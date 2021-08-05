@@ -10,7 +10,9 @@ import json
 
 excel = ExcelOperator(fileName='material.xlsx')
 requests = Requests()
-
+# 失败后重跑1次， 间隔2秒
+@pytest.mark.flaky(reruns=1, reruns_delay=2)
+# 参数化
 @pytest.mark.parametrize("datas", excel.runs())
 def test_material(datas, login_success):
     # 对请求参数做 反序列化的处理
@@ -40,15 +42,7 @@ def test_material(datas, login_success):
     elif datas[ExcelVars.contentType] == 'form':
         dataParams = params
 
-    result = requests.request(url=url, method=datas[ExcelVars.method], headers=header,json = jsonParams, data = dataParams, params = queryParams)
+    result = requests.request(url=url, method=datas[ExcelVars.method], headers=header, json=jsonParams, data=dataParams,
+                              params=queryParams)
     assert result.status_code == datas[ExcelVars.statusCode]
     assert datas[ExcelVars.expect] in json.dumps(result.json(), ensure_ascii=False)
-
-
-if __name__ == '__main__':
-    print("begin test")
-    ## 测试结果展示
-    pytest.main(["-s", "-v", "test_material.py", "--alluredir", "./report/result"])
-    import subprocess
-    subprocess.call('allure generate report/result/ -o report/html --clean', shell=True)
-    subprocess.call('allure open -h 127.0.0.1 -p  8088 ./report/html', shell=True)
