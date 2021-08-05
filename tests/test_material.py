@@ -27,7 +27,9 @@ def test_material(datas, login_success):
     if len(str(params).strip()) == 0:
         pass
     elif len(str(params).strip()) >= 0:
+        # TODO 参数从 data/material/add.json 中获取, 无需都写在 excel 中， 太冗长
         # TODO 参数需要设置随机变量
+        # TODO 设置上一次获取的结果，替换掉这个变量，执行下一次的结果
         params = json.loads(params)
 
     # 对请求头做反序列化的处理
@@ -63,3 +65,5 @@ def test_material(datas, login_success):
     # 验证期望的结果是否符合
     # TODO 扩展更灵活的断言方式
     assert datas[ExcelVars.expect] in json.dumps(result.json(), ensure_ascii=False)
+
+    # TODO 保存上一次的结果，用于下一次的计算
