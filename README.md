@@ -3,6 +3,7 @@
 
 ```
 pip install pytest
+pip install pytest-rerunfailures #失败后重试
 pip install requests 
 pip install json # json 处理
 pip install xlrd # excel 处理
