@@ -1,3 +1,19 @@
+## 0. 接口自动化测试
+
+1. 什么情况要用接口自动化测试 ( pytest + requests + allure )
+
+2. 什么时候要用 ui 自动化测试 （pytest + seleniume ）
+
+3. jmeter 压力测试
+
+前后端分离
+前端： vue
+后端： 接口 
+
+postman 接口调试工具
+
+json : 序列化格式
+
 ## 1. 添加依赖
 按 requirements.txt 说明添加依赖
 
@@ -80,3 +96,22 @@ Content-type: application/x-www-form-urlencoded;charset:UTF-8
 4. cookie
 
 说明： HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。
+
+
+5.  接口验证
+
+oauth 
+JWT 接口签名验证
+
+
+6. pytest 
+
+1. fixture : https://www.cnblogs.com/superhin/p/11455376.html
+2. @pytest.mark.parametrize  https://www.cnblogs.com/superhin/p/11477620.html
+
+7. test  
+
+    setup() 前置条件
+    test_function1
+    test_function2
+    teardown () 后置条件

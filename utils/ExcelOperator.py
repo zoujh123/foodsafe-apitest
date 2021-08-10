@@ -15,6 +15,8 @@ class ExcelVars:
     headers = "请求头"
     statusCode = "状态码"
     contentType = "请求文本类型"
+    resultParse = "保存结果解析方式"
+    resultParam = "保存结果变量"
 
 
 '''

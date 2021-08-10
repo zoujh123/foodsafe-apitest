@@ -1,3 +1,6 @@
 siteUrl: http://xone.xy-asia.com:8552/tasty_mgr #站点地址
 loginUrl : /login.do                            #登陆路径
 logoutUrl : /logout.do                          #退出路径
+
+dingtalk_access_token: b9ed5f192d89a3b2668cf5ad89c811bd7b9bd49c4974190b67cb2932a945e0d4
+dingtalk_tags: 自动化结果

@@ -1,3 +1,7 @@
 role_store: # 门店角色
   username: wbcsmd # 账号
   password: 123456 # 密码
+
+role_brand: #品牌角色
+  username: xx
+  password: xxx
