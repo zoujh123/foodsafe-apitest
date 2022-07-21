@@ -3,7 +3,7 @@
 '''
 import pytest
 from utils.ExcelOperator import ExcelOperator, ExcelVars
-from tests.login import login_store_success
+from tests.login import login_brand_success
 from utils.ParamOperator import parseRandParam, parseResultParam
 from utils.Requests import Requests
 from utils.ConfigOperator import ConfigOperator
@@ -12,18 +12,18 @@ import json
 import re
 import allure
 
-excel = ExcelOperator(fileName='material.xlsx')
+excel = ExcelOperator(fileName='material_unit.xlsx')
 requests = Requests()
 result_params_container = {}
 
 # TODO 失败后重跑1次， 间隔2秒，验证是否有效果
 @pytest.mark.flaky(reruns=1, reruns_delay=2)
 # 参数化
-# @allure.title("物料设置")
+# @allure.title("物料单位设置")
 @pytest.mark.parametrize("datas", excel.runs())
-def test_material(datas, login_store_success):
+def test_material_unit(datas, login_brand_success):
     # 动态设置title
-    allure.dynamic.title("物料设置 - " + datas[ExcelVars.caseName])
+    allure.dynamic.title("物料单位设置 - " + datas[ExcelVars.caseName])
 
     # 对请求参数做 反序列化的处理
     params = datas[ExcelVars.params]
@@ -46,7 +46,7 @@ def test_material(datas, login_store_success):
     elif len(str(header).strip()) >= 0:
         # 设置 JWT 请求头参数
         if '{token}' in header:
-            header = header.replace('{token}', login_store_success)
+            header = header.replace('{token}', login_brand_success)
         header = json.loads(header)
 
     # 设置地址

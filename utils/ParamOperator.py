@@ -15,7 +15,7 @@ def parseResultParam(map, params):
 随机数
 """
 def parseRandParam(jsonString):
-    nowTimestamp = time.time()
-    randStr = "%d%d" % (nowTimestamp, random.randint(0, 100))
+    # nowTimestamp = time.time()
+    randStr = "%d" % (random.randint(0, 1000))
     jsonString = jsonString.replace("{rand}", randStr)
     return jsonString
