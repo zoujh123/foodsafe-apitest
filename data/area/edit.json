@@ -1,0 +1,21 @@
+{
+    "id": {area_id},
+    "brand": {
+        "id": 43,
+        "picUrl": ""
+    },
+    "parent": {
+        "brand": {
+            "id": 43,
+            "picUrl": ""
+        },
+        "direct": false,
+        "hierarchy": "/",
+        "id": 393,
+        "name": "食安一福建"
+    },
+    "name": "测试修改{rand}",
+    "descr": null,
+    "direct": false,
+    "hierarchy": "/393/"
+}
