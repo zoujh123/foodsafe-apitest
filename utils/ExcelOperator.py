@@ -1,7 +1,7 @@
 import xlrd
 import json
 from utils.FileOperator import FileOperator
-
+import xlutils.copy
 class ExcelVars:
     caseID = "测试用例ID"
     caseModel = "模块"
@@ -17,14 +17,14 @@ class ExcelVars:
     contentType = "请求文本类型"
     resultParse = "保存结果解析方式"
     resultParam = "保存结果变量"
-
-
+    # actualResult = "实际结果"
+    # caserow = "测试用例行数"           # 用于写入实际结果
 '''
 对 EXCEL 进行操作
 '''
 class ExcelOperator(object):
 
-    def __init__(self,fileDir = 'data', fileName = 'material'):
+    def __init__(self,fileDir, fileName):
         self.fileDir = fileDir
         self.fileName = fileName
 
@@ -36,13 +36,13 @@ class ExcelOperator(object):
     def getExcelDatas(self):
         datas = list()
         title = self.getSheet().row_values(0)
+
         # 忽略首行
         for row in range(1, self.getSheet().nrows):
             row_values = self.getSheet().row_values(row)
+
             datas.append(dict(zip(title, row_values)))
         return datas
-
-
     def runs(self):
         '''获取到可执行的测试用例'''
         run_list = []
@@ -70,3 +70,4 @@ class ExcelOperator(object):
                 pass
             elif len(str(params).strip()) >= 0:
                 params = json.loads(params)
+

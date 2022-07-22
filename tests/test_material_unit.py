@@ -12,7 +12,7 @@ import json
 import re
 import allure
 
-excel = ExcelOperator(fileName='material_unit.xlsx')
+excel = ExcelOperator(fileDir="data",fileName='material_unit.xlsx')
 requests = Requests()
 result_params_container = {}
 

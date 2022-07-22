@@ -1,0 +1,12 @@
+{
+    "id": null,
+    "brand": {
+        "id": 43
+    },
+    "parent": {
+        "id": 393,
+        "name": "食安一福建"
+    },
+    "name": "测试{rand}区域",
+    "descr": null
+}

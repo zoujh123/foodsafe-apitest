@@ -4,7 +4,7 @@
 import pytest
 from utils.ExcelOperator import ExcelOperator, ExcelVars
 from tests.login import login_brand_success
-from utils.ParamOperator import parseRandParam, parseResultParam
+from utils.ParamOperator import parseRandParam, parseResultParam,parseRandParamChinese
 from utils.Requests import Requests
 from utils.ConfigOperator import ConfigOperator
 from utils.JsonOperator import JsonOperator
@@ -12,19 +12,19 @@ import json
 import re
 import allure
 
-excel = ExcelOperator(fileDir="data", fileName='material.xlsx')
+excel = ExcelOperator(fileDir="data", fileName='area.xlsx')
 requests = Requests()
 result_params_container = {}
 
 # TODO 失败后重跑1次， 间隔2秒，验证是否有效果
 @pytest.mark.flaky(reruns=1, reruns_delay=2)
 # 参数化
-# @allure.title("物料设置")
+# @allure.title("物料单位设置")
 @pytest.mark.parametrize("datas", excel.runs())
-def test_material(datas, login_brand_success):
+def test_material_unit(datas, login_brand_success):
     # 动态设置title
-    allure.dynamic.title("物料设置 - " + datas[ExcelVars.caseName])
-
+    allure.dynamic.title("区域管理 - " + datas[ExcelVars.caseName])
+    print(datas)
     # 对请求参数做 反序列化的处理
     params = datas[ExcelVars.params]
     if len(str(params).strip()) == 0:
@@ -33,7 +33,7 @@ def test_material(datas, login_brand_success):
         # TODO 参数从 data/material/add.json 中获取, 无需都写在 excel 中， 太冗长
         params = JsonOperator.readJson("data", params)
         # TODO 替换随机变量
-        params = parseRandParam(params)
+        params = parseRandParamChinese(params)
         # TODO 设置上一次获取的结果，替换掉这个变量，执行下一次的结果
         params = parseResultParam(result_params_container, params)
         # 转JSON
@@ -100,3 +100,4 @@ def test_material(datas, login_brand_success):
     # TODO 扩展更灵活的断言方式
     assert datas[ExcelVars.expect] in json.dumps(result.json(), ensure_ascii=False)
     # TODO 保存上一次的结果，用于下一次的计算
+
