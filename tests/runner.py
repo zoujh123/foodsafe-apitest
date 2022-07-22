@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
     # 测试结果展示
     # TODO allure 结果
-    res = pytest.main(["-s", "-v", "test_material_unit.py", "--alluredir", resultFilePath, "--clean-alluredir"])
+    res = pytest.main(["-s", "-v", "test_material_cls.py", "--alluredir", resultFilePath, "--clean-alluredir"])
 
     # TODO 获取报告的结果
     content = "测试环境：%s.测试结果: 通过[%s]，失败[%s],错误[%s],跳过[%s]" % ( "食安测试环境" , "1","2","3","4")
