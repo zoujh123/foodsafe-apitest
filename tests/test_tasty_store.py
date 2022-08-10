@@ -12,7 +12,7 @@ import json
 import re
 import allure
 
-excel = ExcelOperator(fileDir="data", fileName='material_unit.xlsx')
+excel = ExcelOperator(fileDir="data", fileName='tasty_store.xlsx')
 requests = Requests()
 result_params_container = {}
 
@@ -20,11 +20,11 @@ result_params_container = {}
 # TODO 失败后重跑1次， 间隔2秒，验证是否有效果
 @pytest.mark.flaky(reruns=1, reruns_delay=2)
 # 参数化
-# @allure.title("物料单位设置")
+# @allure.title("物料设置")
 @pytest.mark.parametrize("datas", excel.runs())
-def test_material_unit(datas, login_brand_success):
+def test_material(datas, login_brand_success):
     # 动态设置title
-    allure.dynamic.title("物料单位设置 - " + datas[ExcelVars.caseName])
+    allure.dynamic.title("门店管理 - " + datas[ExcelVars.caseName])
 
     # 对请求参数做 反序列化的处理
     params = datas[ExcelVars.params]
@@ -38,7 +38,9 @@ def test_material_unit(datas, login_brand_success):
         # TODO 设置上一次获取的结果，替换掉这个变量，执行下一次的结果
         params = parseResultParam(result_params_container, params)
         # 转JSON
+        print("json：转换前："+str(params))
         params = json.loads(params)
+        print("json：转换后："+str(params))
 
     # 对请求头做反序列化的处理
     header = datas[ExcelVars.headers]
@@ -69,7 +71,7 @@ def test_material_unit(datas, login_brand_success):
                               params=queryParams)
 
     jsonData = result.json()
-
+    print("请求结果："+str(jsonData))
     # 解析方法
     result_parse = datas[ExcelVars.resultParse]
     if len(str(result_parse).strip()) > 0:

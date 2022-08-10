@@ -12,11 +12,13 @@ def login_store_success():
     print('角色类型是' + role)
     yield from login(role)
 
+
 @pytest.fixture(scope="session")
 def login_brand_success():
     role = 'brand'
     print('角色类型是' + role)
     yield from login(role)
+
 
 def login(role):
     loginUserName = ConfigOperator.getLoginInfo(role)['username']

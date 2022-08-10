@@ -1,4 +1,4 @@
-siteUrl: http://xone.xy-asia.com:8552/tasty_mgr #站点地址
+siteUrl: https://fss.xy-asia.com/tasty_mgr #站点地址
 loginUrl : /login.do                            #登陆路径
 logoutUrl : /logout.do                          #退出路径
 

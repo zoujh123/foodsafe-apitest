@@ -12,7 +12,7 @@ import json
 import re
 import allure
 
-excel = ExcelOperator(fileDir="data", fileName='material_unit.xlsx')
+excel = ExcelOperator(fileDir="data", fileName='tasty_material.xlsx')
 requests = Requests()
 result_params_container = {}
 
@@ -20,11 +20,11 @@ result_params_container = {}
 # TODO 失败后重跑1次， 间隔2秒，验证是否有效果
 @pytest.mark.flaky(reruns=1, reruns_delay=2)
 # 参数化
-# @allure.title("物料单位设置")
+# @allure.title("物料设置")
 @pytest.mark.parametrize("datas", excel.runs())
-def test_material_unit(datas, login_brand_success):
+def test_material(datas, login_brand_success):
     # 动态设置title
-    allure.dynamic.title("物料单位设置 - " + datas[ExcelVars.caseName])
+    allure.dynamic.title("物料设置 - " + datas[ExcelVars.caseName])
 
     # 对请求参数做 反序列化的处理
     params = datas[ExcelVars.params]
